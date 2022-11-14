@@ -1,0 +1,38 @@
+services:
+  db1:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin123
+    networks:
+      - p19
+
+  db2:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin123
+    networks:
+      - p19
+
+  db3:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin123
+    networks:
+      - p19
+
+  php:
+    build:
+      context: ./context/php-fpm
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - p19
+
+networks:
+  p19:
+    driver: bridge
